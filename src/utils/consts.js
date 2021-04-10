@@ -1,5 +1,5 @@
 export const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
-export const BASE_IMG_URL_W500 = "http://image.tmdb.org/t/p/w500";
+export const BASE_IMG_URL_W500 = "https://image.tmdb.org/t/p/w500";
 export const IMG_NOT_FOUND =
   "https://ream-rti.ru/local/templates/ream_rti/img/no-image.png";
 export const IMG_NOT_FOUND_CAST =

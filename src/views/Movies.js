@@ -7,6 +7,7 @@ import MoviesList from "../components/MoviesList/MoviesList";
 import Alert from "@material-ui/lab/Alert";
 import Pagination from "../components/Pagination/Pagination";
 import { Typography } from "@material-ui/core";
+import Spinner from "../components/Spinner/Spinner";
 export default class Movies extends Component {
   state = {
     movies: [],
@@ -131,6 +132,7 @@ export default class Movies extends Component {
             Something went wrong...
           </Alert>
         )}
+        {loading && <Spinner />}
       </>
     );
   }
