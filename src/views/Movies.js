@@ -8,6 +8,14 @@ import Alert from "@material-ui/lab/Alert";
 import Pagination from "../components/Pagination/Pagination";
 import { Typography } from "@material-ui/core";
 import Spinner from "../components/Spinner/Spinner";
+const INITIAL_STATE = {
+  movies: [],
+  page: 1,
+  totalPages: 0,
+  loading: false,
+  error: null,
+  notFoundMessage: false,
+};
 export default class Movies extends Component {
   state = {
     movies: [],
@@ -52,31 +60,37 @@ export default class Movies extends Component {
     }
   }
   handleSubmit = (query, page) => {
-    this.setState({ loading: true });
-    fetchMovieByQuery(query, page)
-      .then((data) => {
-        this.setState({
-          movies: data.results,
-          totalPages: data.total_pages,
-          page: data.page,
+    if (query !== undefined) {
+      this.setState({ loading: true });
+      fetchMovieByQuery(query, page)
+        .then((data) => {
+          this.setState({
+            movies: data.results,
+            totalPages: data.total_pages,
+            page: data.page,
+          });
+        })
+        .catch((err) => this.setState({ error: err }))
+        .finally(() => {
+          if (this.state.movies.length <= 0) {
+            this.setState({
+              notFoundMessage: true,
+              loading: false,
+              error: null,
+            });
+          } else {
+            this.setState({
+              loading: false,
+              notFoundMessage: false,
+              error: null,
+            });
+          }
         });
-      })
-      .catch((err) => this.setState({ error: err }))
-      .finally(() => {
-        if (this.state.movies.length <= 0) {
-          this.setState({
-            notFoundMessage: true,
-            loading: false,
-            error: null,
-          });
-        } else {
-          this.setState({
-            loading: false,
-            notFoundMessage: false,
-            error: null,
-          });
-        }
+    } else {
+      this.setState({
+        ...INITIAL_STATE,
       });
+    }
   };
   handleFormSubmit = (value) => {
     if (value.length > 0) {
@@ -113,7 +127,9 @@ export default class Movies extends Component {
       <>
         <Layout title={query ? `Results for "${query}"` : "Movies Page"} />
         <SearchBar submit={this.handleFormSubmit} />
+
         <MoviesList movies={movies} loading={loading} />
+
         {movies.length > 0 && (
           <Pagination
             page={Number(page)}
