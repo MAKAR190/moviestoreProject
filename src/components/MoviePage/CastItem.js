@@ -34,7 +34,7 @@ const CastItem = ({ actor }) => {
         title={actor.name}
       />
       <CardContent className={classes.cardContent}>
-        <Typography variant="body1">Name: {actor.name}</Typography>
+        <Typography variant="h6">Name: {actor.name}</Typography>
         <Typography variant="body1">Character: {actor.character}</Typography>
       </CardContent>
     </Card>
