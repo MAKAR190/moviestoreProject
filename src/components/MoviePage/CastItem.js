@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   cardContent: {
     display: "flex",
     flexDirection: "column",
+    width: "70%",
   },
 });
 const CastItem = ({ actor }) => {
