@@ -150,7 +150,7 @@ export default function SimpleTabs({ movie }) {
 
         <Grid container className={classes.root} spacing={3}>
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={3}>
+            <Grid container justify="flex-start" spacing={3}>
               {reviews && reviews.length > 0 ? (
                 sortReviews(reviews).map((review) => (
                   <Grid key={review.id} item>

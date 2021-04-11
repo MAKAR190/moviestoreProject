@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { BASE_IMG_URL_W500 } from "../../utils/consts";
+import { BASE_IMG_URL_W500, IMG_NOT_FOUND } from "../../utils/consts";
 import {
   Card,
   CardMedia,
@@ -34,12 +34,17 @@ const ReviewItem = ({ review }) => {
         className={classes.cardMedia}
         component="img"
         alt={review.author}
-        image={`${
+        image={
           review.author_details.avatar_path &&
-          review.author_details.avatar_path.includes("https")
-            ? review.author_details.avatar_path.replace("/", "")
-            : BASE_IMG_URL_W500 + review.author_details.avatar_path
-        }`}
+          review.author_details.avatar_path.length > 0
+            ? `${
+                review.author_details.avatar_path &&
+                review.author_details.avatar_path.includes("https")
+                  ? review.author_details.avatar_path.replace("/", "")
+                  : BASE_IMG_URL_W500 + review.author_details.avatar_path
+              }`
+            : `${IMG_NOT_FOUND}`
+        }
         title={review.author}
       />
       <CardContent className={classes.cardContent}>
