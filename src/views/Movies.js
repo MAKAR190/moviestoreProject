@@ -122,7 +122,7 @@ export default class Movies extends Component {
           />
         )}
         {notFoundMessage && (
-          <Typography variant="h6" style={{ textAlign: "center" }}>
+          <Typography align="center" variant="h6">
             Nothing Found
           </Typography>
         )}

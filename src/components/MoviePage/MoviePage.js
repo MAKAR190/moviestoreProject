@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Rating from "@material-ui/lab/Rating";
 import Tabs from "./Tabs";
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   wrapper: {
     display: "flex",
     justifyContent: "center",

@@ -158,7 +158,9 @@ export default function SimpleTabs({ movie }) {
                   </Grid>
                 ))
               ) : (
-                <Typography variant="h4">No reviews at the moment</Typography>
+                <Typography align="center" variant="h4">
+                  No reviews at the moment
+                </Typography>
               )}
             </Grid>
           </Grid>
